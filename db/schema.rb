@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141217130224) do
+ActiveRecord::Schema.define(version: 20141217141713) do
 
   create_table "levels", force: true do |t|
     t.string   "name"
@@ -34,6 +34,18 @@ ActiveRecord::Schema.define(version: 20141217130224) do
 
   add_index "locations", ["level_id"], name: "index_locations_on_level_id"
   add_index "locations", ["type_id"], name: "index_locations_on_type_id"
+
+  create_table "reservations", force: true do |t|
+    t.integer  "location_id"
+    t.date     "startDate"
+    t.date     "endDate"
+    t.integer  "reservationNumber"
+    t.boolean  "deposit"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reservations", ["location_id"], name: "index_reservations_on_location_id"
 
   create_table "types", force: true do |t|
     t.string   "name"

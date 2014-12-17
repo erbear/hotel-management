@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  location_id: 
+  startDate: 2014-12-17
+  endDate: 2014-12-17
+  reservationNumber: 1
+  deposit: false
+
+two:
+  location_id: 
+  startDate: 2014-12-17
+  endDate: 2014-12-17
+  reservationNumber: 1
+  deposit: false

@@ -89,3 +89,35 @@ Location.create(
   ]
   )
 
+Reservation.create(
+  [
+    {
+      startDate: "2015-06-24", 
+      endDate: "2015-06-26", 
+      reservationNumber: "2412", 
+      deposit: true, 
+      location_id: 1
+    },
+    {
+      startDate: "2015-08-02", 
+      endDate: "2015-08-04", 
+      reservationNumber: "5241", 
+      deposit: true, 
+      location_id: 2
+    },
+    {
+      startDate: "2015-02-03", 
+      endDate: "2015-02-05", 
+      reservationNumber: "5346", 
+      deposit: true, 
+      location_id: 3
+    },
+    {
+      startDate: "2015-03-02", 
+      endDate: "2015-03-30", 
+      reservationNumber: "3456", 
+      deposit: true, 
+      location_id: 4
+    }
+  ]
+  )
