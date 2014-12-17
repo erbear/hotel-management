@@ -6,8 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
-
 Level.create([{name: "Standard"}, {name: "Deluxe"}, {name: "Standard Plus"}])
 
 Type.create([{name: "Pokoj"}, {name: "Sala konferencyjna"}])
