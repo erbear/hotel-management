@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141217190449) do
+ActiveRecord::Schema.define(version: 20141217192002) do
 
   create_table "addresses", force: true do |t|
     t.string   "city"
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 20141217190449) do
   end
 
   add_index "checkins", ["reservation_id"], name: "index_checkins_on_reservation_id", using: :btree
+
+  create_table "customer_reservations", force: true do |t|
+    t.integer  "reservation_id"
+    t.integer  "customer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "customer_reservations", ["customer_id"], name: "index_customer_reservations_on_customer_id", using: :btree
+  add_index "customer_reservations", ["reservation_id"], name: "index_customer_reservations_on_reservation_id", using: :btree
 
   create_table "customers", force: true do |t|
     t.string   "firstName"

@@ -138,3 +138,5 @@ Customer.create([
   {firstName: "Kamila", lastName: "Arkabuz", address_id: 2},
   {firstName: "Bartosz", lastName: "Erbert", address_id: 3}
   ])
+
+CustomerReservation.create(customer_id: 1, reservation_id: 1)
