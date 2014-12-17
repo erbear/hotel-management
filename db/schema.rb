@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141217143504) do
+ActiveRecord::Schema.define(version: 20141217190449) do
+
+  create_table "addresses", force: true do |t|
+    t.string   "city"
+    t.string   "street"
+    t.integer  "buildingNumber"
+    t.integer  "flatNumber"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "adres", force: true do |t|
+    t.string   "miasto"
+    t.string   "ulica"
+    t.integer  "nr_domu"
+    t.integer  "nr_lokalu"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "checkins", force: true do |t|
     t.integer  "reservation_id"
@@ -25,6 +43,19 @@ ActiveRecord::Schema.define(version: 20141217143504) do
   end
 
   add_index "checkins", ["reservation_id"], name: "index_checkins_on_reservation_id", using: :btree
+
+  create_table "customers", force: true do |t|
+    t.string   "firstName"
+    t.string   "lastName"
+    t.integer  "address_id"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "customers", ["address_id"], name: "index_customers_on_address_id", using: :btree
 
   create_table "levels", force: true do |t|
     t.string   "name"

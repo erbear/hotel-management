@@ -127,3 +127,14 @@ Checkin.create(
       keysBack:true
     }
   ])
+Address.create([
+  {city: "Wroclaw", street: "Reymonta", buildingNumber: "3", flatNumber: "8"},
+  {city: "Kraków", street: "Kazimierza Wielkiego", buildingNumber: "2"},
+  {city: "Gdańsk", street: "Bracka", buildingNumber: "3"}
+
+  ])
+Customer.create([
+  {firstName: "Major", lastName: "Hubal", address_id: 1},
+  {firstName: "Kamila", lastName: "Arkabuz", address_id: 2},
+  {firstName: "Bartosz", lastName: "Erbert", address_id: 3}
+  ])
