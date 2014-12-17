@@ -86,8 +86,7 @@ Location.create(
       fee: "30",
       active: true
     }
-  ]
-  )
+  ])
 
 Reservation.create(
   [
@@ -119,5 +118,14 @@ Reservation.create(
       deposit: true, 
       location_id: 4
     }
-  ]
-  )
+  ])
+Checkin.create(
+  [
+    {
+      reservation_id: 1, 
+      startDate: "2015-06-24", 
+      endDate: "2015-06-26", 
+      keysGiven: true, 
+      keysBack:true
+    }
+  ])
