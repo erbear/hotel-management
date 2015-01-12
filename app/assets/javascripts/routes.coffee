@@ -7,3 +7,8 @@ angular.module('HotelApp').config ($stateProvider, $urlRouterProvider) ->
     controller: 'ReservationsCtrl',
     templateUrl: 'reservations/index.html'
   })
+  .state('reserve', {
+    url: '/reserve/:id',
+    controller: 'ReserveCtrl',
+    templateUrl: 'reservations/reserve.html'
+  })

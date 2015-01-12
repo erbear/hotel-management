@@ -16,5 +16,9 @@
 //= require angular
 //= require angular-rails-templates
 //= require angular-ui-router
+//= require moment
+//= require angular-ui-bootstrap-bower
+//= require angular-input-date
+//= require angular-bootstrap-calendar
 //= require_tree ./../templates
 //= require_tree .

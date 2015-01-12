@@ -1,0 +1,85 @@
+
+button ng-click="calendarControl.prev()"
+  | prev
+button ng-click="calendarControl.next()"
+  | next
+
+h3 ng-bind="calendarControl.getTitle()"
+
+mwl-calendar(
+    calendar-events="events"
+    calendar-view="'month'"
+    calendar-current-day="calendarDay"
+    calendar-control="calendarControl"
+    calendar-event-click="eventClicked($event)"
+    calendar-edit-event-html="'<button>next</button>'"
+    calendar-delete-event-html="'<button>previous</button>'"
+    calendar-edit-event-click="eventEdited($event)"
+    calendar-delete-event-click="eventDeleted($event)"
+    calendar-auto-open="true"
+)
+
+h2
+  | Kiedy?
+label
+  | start
+input type="date" ng-model="events[0].starts_at"
+label
+  | koniec
+input type="date" ng-model="events[0].ends_at"
+
+
+h2
+  | Dane
+div
+  label 
+    | Imie
+div
+  input type="text" ng-model="firstName"
+div
+  label 
+    | Nazwisko
+div
+  input type="text" ng-model="lastName"
+div
+  label 
+    | Email
+div
+  input type="text" ng-model="email"
+div
+  label 
+    | Telefon
+div
+  input type="text" ng-model="phone"
+div
+  label 
+    | Dodatkowe Informacje
+div
+  input type="text" ng-model="description"
+
+h2  
+  | Adres
+
+div
+  label 
+    | Miasto
+div
+  input type="text" ng-model="city"
+
+div
+  label 
+    | Ulica
+div
+  input type="text" ng-model="street"
+
+div
+  label 
+    | Nr Domu
+div
+  input type="text" ng-model="buildingNumber"
+
+div
+  label 
+    | Nr Mieszkania
+div
+  input type="text" ng-model="flatNumber"

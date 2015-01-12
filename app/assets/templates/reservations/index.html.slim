@@ -1,2 +1,4 @@
 div ng-repeat="location in locations"
-  | {{location.name}}
+  | {{location.name}} (typ: {{location.type}}) (poziom: {{location.level}})
+  a ui-sref="reserve({id: location.id})"
+    | rezerwuj
