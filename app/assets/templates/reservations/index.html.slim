@@ -1,4 +1,25 @@
-div ng-repeat="location in locations"
-  | {{location.name}} (typ: {{location.type}}) (poziom: {{location.level}})
-  a ui-sref="reserve({id: location.id})"
-    | rezerwuj
+table.table.table-striped
+  tr 
+    th Nazwa
+    th Typ
+    th Klasa
+    th Ilość miejsc
+    th Kaucja/Dzień
+    th Cena/Dzień
+    th Pasi?
+  tr ng-repeat="location in locations"
+    td 
+      | {{location.name}}
+    td 
+      | {{location.type}}
+    td 
+      | {{location.level}}
+    td 
+      | {{location.places}}
+    td 
+      | {{location.fee}}
+    td 
+      | {{location.price}}
+    td
+      button.btn.btn-primary ui-sref="reserve({id: location.id})"
+        | rezerwuj
