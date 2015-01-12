@@ -1,8 +1,9 @@
+.btn-group
 
-button ng-click="calendarControl.prev()"
-  | prev
-button ng-click="calendarControl.next()"
-  | next
+  button.btn.btn-primary ng-click="calendarControl.prev()"
+    | prev
+  button.btn.btn-primary ng-click="calendarControl.next()"
+    | next
 
 h3 ng-bind="calendarControl.getTitle()"
 
@@ -23,10 +24,10 @@ h2
   | Kiedy?
 label
   | start
-input type="date" ng-model="events[0].starts_at"
+input.form-control type="date" ng-model="events[0].starts_at"
 label
   | koniec
-input type="date" ng-model="events[0].ends_at"
+input.form-control type="date" ng-model="events[0].ends_at"
 
 
 h2
@@ -35,27 +36,27 @@ div
   label 
     | Imie
 div
-  input type="text" ng-model="firstName"
+  input.form-control type="text" ng-model="firstName"
 div
   label 
     | Nazwisko
 div
-  input type="text" ng-model="lastName"
+  input.form-control type="text" ng-model="lastName"
 div
   label 
     | Email
 div
-  input type="text" ng-model="email"
+  input.form-control type="text" ng-model="email"
 div
   label 
     | Telefon
 div
-  input type="text" ng-model="phone"
+  input.form-control type="text" ng-model="phone"
 div
   label 
     | Dodatkowe Informacje
 div
-  input type="text" ng-model="description"
+  input.form-control type="text" ng-model="description"
 
 h2  
   | Adres
@@ -64,22 +65,25 @@ div
   label 
     | Miasto
 div
-  input type="text" ng-model="city"
+  input.form-control type="text" ng-model="city"
 
 div
   label 
     | Ulica
 div
-  input type="text" ng-model="street"
+  input.form-control type="text" ng-model="street"
 
 div
   label 
     | Nr Domu
 div
-  input type="text" ng-model="buildingNumber"
+  input.form-control type="text" ng-model="buildingNumber"
 
 div
   label 
     | Nr Mieszkania
 div
-  input type="text" ng-model="flatNumber"
+  input.form-control type="text" ng-model="flatNumber"
+h2
+  button.btn.btn-primary
+    | Rezerwuj
