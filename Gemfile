@@ -29,13 +29,12 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 # ASSETS
-gem 'rails-assets-angular', '~> 1.2.26'
+gem 'rails-assets-angular'
 gem 'angular-rails-templates'
 gem 'rails-assets-angular-ui-router'
-gem 'rails-assets-bootstrap', '~> 3.2.0'
+gem 'rails-assets-bootstrap'
 gem 'rails-assets-moment'
 gem 'rails-assets-angular-ui-bootstrap-bower'
-gem 'rails-assets-angular-input-date'
 gem 'rails-assets-angular-bootstrap-calendar'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -6,7 +6,6 @@ angular.module('HotelApp', [
   'templates', 
   'ui.router',
   'ui.bootstrap',
-  'ngInputDate',
   'mwl.calendar'
   ])
 
