@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   get '/reservations' => 'reservations#all'
   get '/malfunctions' => 'malfunctions#all'
+  post '/reservations' => 'reservations#create'
   # You can have the root of your site routed with "root"
   root 'reservations#index'
   # root 'malfunctions#index'

@@ -22,14 +22,21 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    location = params.permit(:location)
-    start_date = params.permit(:startDate)
-    end_date = params.permit(:endDate)
+    location = params.permit(:location)["location"]
+    start_date = params.permit(:startDate)["startDate"]
+    end_date = params.permit(:endDate)["endDate"]
     identyficator = Digest::SHA1.hexdigest([Time.now, rand].join)
 
-    params.permit(:city, :street, :buildingNumber, :flatNumber)
+    adres = Address.create(params.permit(:city, :street, :buildingNumber, :flatNumber))
+    customer = adres.customers.create(params.permit(:firstName, :lastName, :email, :phone, :description))
 
-    params.permit(:firstName, :lastName, :email, :phone, :description)
+    reservation = customer.reservations.create(
+      location_id: location, 
+      startDate: start_date, 
+      endDate: end_date,
+      reservationNumber: identyficator
+      )
     
+    render :json=>reservation
   end
 end

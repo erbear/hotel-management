@@ -8,12 +8,18 @@ angular.module('HotelApp', [
   'ui.bootstrap',
   'mwl.calendar'
   ])
+.config ($provide, $httpProvider) ->
+
+  # CSFR token
+  $httpProvider.defaults.headers.common['X-CSRF-Token'] =
+    angular.element(document.querySelector('meta[name=csrf-token]')).attr('content')
+
 
 .controller 'ReservationsCtrl', ($http, $scope)->
   $http.get('/reservations').success (data)->
     $scope.locations = data
 
-.controller 'ReserveCtrl', ($http, $scope)->
+.controller 'ReserveCtrl', ($http, $scope, $stateParams)->
   $scope.events = [
     title: 'My event title', 
     type: 'info',
@@ -26,3 +32,22 @@ angular.module('HotelApp', [
 
   $scope.startDate = new Date()
   $scope.endDate = new Date()
+
+  $scope.addReservation = ()->
+    $http.post('/reservations', {
+      location: $stateParams.id,
+      startDate: $scope.events[0].starts_at,
+      endDate: $scope.events[0].ends_at,
+      city: $scope.city,
+      street: $scope.street,
+      buildingNumber: $scope.buildingNumber,
+      flatNumber: $scope.flatNumber,
+      firstName: $scope.firstName,
+      lastName: $scope.lastName,
+      email: $scope.email,
+      phone: $scope.phone,
+      description: $scope.description
+      })
+    .success (data)->
+      console.log data
+
