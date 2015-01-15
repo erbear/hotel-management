@@ -4,7 +4,8 @@ Rails.application.routes.draw do
 
   get '/reservations' => 'reservations#all'
   # You can have the root of your site routed with "root"
-  root 'reservations#index'
+  #root 'reservations#index'
+  root 'malfunctions#index'
 
   # Example of regular route:
   # get 'products/:id' => 'catalog#view'
