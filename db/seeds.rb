@@ -140,3 +140,5 @@ Customer.create([
   ])
 
 CustomerReservation.create(customer_id: 1, reservation_id: 1)
+
+Malfunction.create([{description: "usterka nr 1"}, {description: "usterka nr 2"}])
