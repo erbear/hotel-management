@@ -1,0 +1,46 @@
+
+label
+  | Wpisz numer rezerwacji
+.row
+  .col-lg-6
+    .input-group
+      input.form-control type="text" placeholder="Numer rezerwacji"  ng-model="reservationNumber"
+      span.input-group-btn
+        button.btn.btn-success type="button" ng-click="searchReservation(reservationNumber)"
+          | Szukaj! 
+
+.row ng-if="location"
+  h2
+    | {{location.name}}
+  h4
+    | Typ: {{location.type}}
+  h4
+    | Poziom: {{location.level}}
+  h2
+    | Rezerwujący
+  label
+    | Imie
+  input.form-control type="text" ng-model="customer.firstName"
+  label
+    | Nazwisko
+  input.form-control type="text" ng-model="customer.lastName"
+  label
+    | Email
+  input.form-control type="text" ng-model="customer.email"
+  label
+    | Telefon
+  input.form-control type="text" ng-model="customer.phone" 
+  h3
+    | Adres
+  label
+    | Miasto
+  input.form-control type="text" ng-model="address.city" 
+  label
+    | Ulica
+  input.form-control type="text" ng-model="address.street" 
+  label
+    | Nr domu
+  input.form-control type="text" ng-model="address.buildingNumber" 
+  label
+    | Nr Mieszkania
+  input.form-control type="text" ng-model="address.flatNumber" 

@@ -28,62 +28,80 @@ input.form-control type="date" ng-model="events[0].starts_at"
 label
   | koniec
 input.form-control type="date" ng-model="events[0].ends_at"
+/ .well style="margin: 20px 0;"
+/   div
+/     input type="radio" ng-model="isReservation" value="false" Nie posiadam zadnej rezerwacji
+/   div
+/     input type="radio" ng-model="isReservation" value="true" Posiadam Rezerwacje
+div 
+  h2
+    | Dane
+  div
+    label 
+      | Imie
+  div
+    input.form-control type="text" ng-model="firstName"
+  div
+    label 
+      | Nazwisko
+  div
+    input.form-control type="text" ng-model="lastName"
+  div
+    label 
+      | Email
+  div
+    input.form-control type="text" ng-model="email"
+  div
+    label 
+      | Telefon
+  div
+    input.form-control type="text" ng-model="phone"
+  div
+    label 
+      | Dodatkowe Informacje
+  div
+    input.form-control type="text" ng-model="description"
 
+  h2  
+    | Adres
 
-h2
-  | Dane
-div
-  label 
-    | Imie
-div
-  input.form-control type="text" ng-model="firstName"
-div
-  label 
-    | Nazwisko
-div
-  input.form-control type="text" ng-model="lastName"
-div
-  label 
-    | Email
-div
-  input.form-control type="text" ng-model="email"
-div
-  label 
-    | Telefon
-div
-  input.form-control type="text" ng-model="phone"
-div
-  label 
-    | Dodatkowe Informacje
-div
-  input.form-control type="text" ng-model="description"
+  div
+    label 
+      | Miasto
+  div
+    input.form-control type="text" ng-model="city"
 
-h2  
-  | Adres
+  div
+    label 
+      | Ulica
+  div
+    input.form-control type="text" ng-model="street"
 
-div
-  label 
-    | Miasto
-div
-  input.form-control type="text" ng-model="city"
+  div
+    label 
+      | Nr Domu
+  div
+    input.form-control type="text" ng-model="buildingNumber"
 
-div
-  label 
-    | Ulica
-div
-  input.form-control type="text" ng-model="street"
+  div
+    label 
+      | Nr Mieszkania
+  div
+    input.form-control type="text" ng-model="flatNumber"
+  h2
+    button.btn.btn-success ng-click="addReservation()"
+      | Rezerwuj
 
-div
-  label 
-    | Nr Domu
-div
-  input.form-control type="text" ng-model="buildingNumber"
-
-div
-  label 
-    | Nr Mieszkania
-div
-  input.form-control type="text" ng-model="flatNumber"
-h2
-  button.btn.btn-success ng-click="addReservation()"
-    | Rezerwuj
+  h2 ng-show="!!reservationNumber"
+    | Twój numer rezerwacji to :
+    h1 
+      | {{reservationNumber}}
+/ div ng-if="isReservation == 'true'"
+/   div
+/     label 
+/       | Wpisz numer rezerwacji
+/   div
+/     input.form-control type="text" ng-model="prevReservationNumber"
+/   h2
+/     button.btn.btn-success ng-click="addReservationWithNumber()"
+/       | Rezerwuj

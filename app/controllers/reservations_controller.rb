@@ -39,4 +39,28 @@ class ReservationsController < ApplicationController
     
     render :json=>reservation
   end
+
+  def showLocation
+    render :json=> Location.where(params.permit(:id)).first.reservations
+  end
+  def show
+    reseravations = Reservation.where(params.permit(:reservationNumber)).includes(customers: :address, location: [:type, :level])
+    output = []
+    reseravations.map do |reservation|
+      object = {
+        startDate: reservation.startDate,
+        endDate: reservation.endDate,
+        location: {
+          name: reservation.location.name,
+          type: reservation.location.type.name,
+          level: reservation.location.level.name
+          },
+        customer: reservation.customers[0],
+        address: reservation.customers[0].address
+        }
+      output.push(object)
+    end
+    render :json=>output
+  end
+
 end

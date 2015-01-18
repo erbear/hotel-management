@@ -20,14 +20,27 @@ angular.module('HotelApp', [
     $scope.locations = data
 
 .controller 'ReserveCtrl', ($http, $scope, $stateParams)->
-  $scope.events = [
-    title: 'My event title', 
-    type: 'info',
-    starts_at: new Date(2015, 0, 1),
-    ends_at: new Date()
-    editable: false ,
-    deletable: false 
-  ]
+  $scope.events = []
+
+  $http.get('/locations/'+$stateParams.id).success (data)->
+    for d in data
+      $scope.events.push({
+        title: 'Zarezerwowane',
+        type: 'important',
+        starts_at: moment(d.startDate).toDate(),
+        ends_at: moment(d.endDate).toDate(),
+        editable: false ,
+        deletable: false 
+        })
+    $scope.events.unshift({
+        title: 'Twoja rezerwacja',
+        type: 'info',
+        starts_at: moment().toDate(),
+        ends_at: moment().toDate(),
+        editable: false ,
+        deletable: false 
+        })
+
   $scope.calendarDay = new Date()
 
   $scope.startDate = new Date()
@@ -47,7 +60,26 @@ angular.module('HotelApp', [
       email: $scope.email,
       phone: $scope.phone,
       description: $scope.description
+      reservationNumber: null
       })
     .success (data)->
-      console.log data
+      $scope.reservationNumber = data.reservationNumber
+
+  $scope.addReservationWithNumber = ()->
+    $http.post('/reservations', {
+      location: $stateParams.id,
+      startDate: $scope.events[0].starts_at,
+      endDate: $scope.events[0].ends_at,
+      reservationNumber: $scope.prevReservationNumber
+      })
+    .success (data)->
+      $scope.reservationNumber = data.reservationNumber
+
+
+.controller 'ReservationCtrl', ($http, $scope, $stateParams)->
+  $scope.searchReservation = (number)->
+    $http.get('/reservations/'+number).success (data)->
+      $scope.location = data[0].location
+      $scope.customer = data[0].customer
+      $scope.address = data[0].address
 
