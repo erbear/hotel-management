@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/locations/:id' => 'reservations#showLocation'
   get '/reservations/:reservationNumber' => 'reservations#show'
   put '/reservations/:reservationNumber' => 'reservations#update'
+  delete '/reservations/:reservationNumber' => 'reservations#destroy'
   # You can have the root of your site routed with "root"
   root 'reservations#index'
   # root 'malfunctions#index'

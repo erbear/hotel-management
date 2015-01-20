@@ -45,17 +45,20 @@ class ReservationsController < ApplicationController
   end
   def show
     reservation = Reservation.where(params.permit(:reservationNumber)).includes(customers: :address, location: [:type, :level]).first
-    object = {
-      startDate: reservation.startDate,
-      endDate: reservation.endDate,
-      location: {
-        name: reservation.location.name,
-        type: reservation.location.type.name,
-        level: reservation.location.level.name
-        },
-      customer: reservation.customers.first,
-      address: reservation.customers.first.address
-    }
+    object = nil
+    if !reservation.nil?
+      object = {
+        startDate: reservation.startDate,
+        endDate: reservation.endDate,
+        location: {
+          name: reservation.location.name,
+          type: reservation.location.type.name,
+          level: reservation.location.level.name
+          },
+        customer: reservation.customers.first,
+        address: reservation.customers.first.address
+      }
+    end
     render :json=>object
   end
   def update
@@ -78,5 +81,10 @@ class ReservationsController < ApplicationController
       address: address
     }
     render :json=>object
+  end
+  def destroy
+    reservation = Reservation.where(params.permit(:reservationNumber)).first
+    is_ok = reservation.destroy
+    render :json=>is_ok
   end
 end

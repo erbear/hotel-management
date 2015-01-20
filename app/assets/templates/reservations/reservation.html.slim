@@ -53,7 +53,7 @@ label
 
     button.btn.btn-primary ng-click="updateReservation()"
       | Zaktualizuj
-    button.btn.btn-danger ng-click="calendarControl.next()"
+    button.btn.btn-danger ng-click="deleteReservation()"
       | Odwołaj
-  span ng-show="actionDone"
-    | Dane zostały zaktualizowane
+h3 style="margin: 20px 0;" ng-show="actionDone"
+  | {{actionMessage}}

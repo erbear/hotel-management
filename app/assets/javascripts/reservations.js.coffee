@@ -76,17 +76,26 @@ angular.module('HotelApp', [
       $scope.reservationNumber = data.reservationNumber
 
 
-.controller 'ReservationCtrl', ($http, $scope, $stateParams, $timeout)->
+.controller 'ReservationCtrl', ($http, $scope, $stateParams, $timeout, $state)->
   reservationNumber = ''
   $scope.actionDone = false
   $scope.searchReservation = (number)->
     reservationNumber = number
+    $scope.location = ''
+    $scope.customer = ''
+    $scope.address = ''
+    $scope.startDate = ''
+    $scope.endDate = ''
     $http.get('/reservations/'+number).success (data)->
-      $scope.location = data.location
-      $scope.customer = data.customer
-      $scope.address = data.address
-      $scope.startDate = moment(data.startDate).format('dddd, D MMMM YYYY')
-      $scope.endDate = moment(data.endDate).format('dddd, D MMMM YYYY')
+      if data?
+        $scope.location = data.location
+        $scope.customer = data.customer
+        $scope.address = data.address
+        $scope.startDate = moment(data.startDate).format('dddd, D MMMM YYYY')
+        $scope.endDate = moment(data.endDate).format('dddd, D MMMM YYYY')
+      else
+        console.log 'lol'
+        $scope.showMessage("Nie znaleziono takiej rezerwacji")
 
   $scope.updateReservation = ()->
     $http.put('/reservations/'+reservationNumber, {
@@ -101,10 +110,17 @@ angular.module('HotelApp', [
       description: $scope.customer.description
 
       }).success (data)->
-      $scope.showMessage()
+      $scope.showMessage("Dane zostały zaktualizowane")
 
-  $scope.showMessage = ->
+  $scope.showMessage = (message)->
+    $scope.actionMessage = message
     $scope.actionDone = true
     $timeout ->
       $scope.actionDone = false
     , 5000
+
+  $scope.deleteReservation = ->
+    $http.delete('/reservations/'+reservationNumber).success (data)->
+      $state.go('reservations')
+
+
