@@ -7,7 +7,7 @@ label
       input.form-control type="text" placeholder="Numer rezerwacji"  ng-model="reservationNumber"
       span.input-group-btn
         button.btn.btn-success type="button" ng-click="searchReservation(reservationNumber)"
-          | Szukaj! 
+          | Szukaj!
 
 .row ng-if="location"
   h2
@@ -16,6 +16,11 @@ label
     | Typ: {{location.type}}
   h4
     | Poziom: {{location.level}}
+
+  h3
+    | Od: {{startDate}}
+  h3
+    | Do: {{endDate}}
   h2
     | Rezerwujący
   label
@@ -29,18 +34,26 @@ label
   input.form-control type="text" ng-model="customer.email"
   label
     | Telefon
-  input.form-control type="text" ng-model="customer.phone" 
+  input.form-control type="text" ng-model="customer.phone"
   h3
     | Adres
   label
     | Miasto
-  input.form-control type="text" ng-model="address.city" 
+  input.form-control type="text" ng-model="address.city"
   label
     | Ulica
-  input.form-control type="text" ng-model="address.street" 
+  input.form-control type="text" ng-model="address.street"
   label
     | Nr domu
-  input.form-control type="text" ng-model="address.buildingNumber" 
+  input.form-control type="text" ng-model="address.buildingNumber"
   label
     | Nr Mieszkania
-  input.form-control type="text" ng-model="address.flatNumber" 
+  input.form-control type="text" ng-model="address.flatNumber"
+  .btn-group style="margin: 20px 0"
+
+    button.btn.btn-primary ng-click="updateReservation()"
+      | Zaktualizuj
+    button.btn.btn-danger ng-click="calendarControl.next()"
+      | Odwołaj
+  span ng-show="actionDone"
+    | Dane zostały zaktualizowane

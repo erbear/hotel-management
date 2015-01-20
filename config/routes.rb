@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post '/reservations' => 'reservations#create'
   get '/locations/:id' => 'reservations#showLocation'
   get '/reservations/:reservationNumber' => 'reservations#show'
+  put '/reservations/:reservationNumber' => 'reservations#update'
   # You can have the root of your site routed with "root"
   root 'reservations#index'
   # root 'malfunctions#index'

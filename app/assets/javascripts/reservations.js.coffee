@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 angular.module('HotelApp', [
-  'templates', 
+  'templates',
   'ui.router',
   'ui.bootstrap',
   'mwl.calendar'
@@ -30,7 +30,7 @@ angular.module('HotelApp', [
         starts_at: moment(d.startDate).toDate(),
         ends_at: moment(d.endDate).toDate(),
         editable: false ,
-        deletable: false 
+        deletable: false
         })
     $scope.events.unshift({
         title: 'Twoja rezerwacja',
@@ -38,7 +38,7 @@ angular.module('HotelApp', [
         starts_at: moment().toDate(),
         ends_at: moment().toDate(),
         editable: false ,
-        deletable: false 
+        deletable: false
         })
 
   $scope.calendarDay = new Date()
@@ -76,10 +76,35 @@ angular.module('HotelApp', [
       $scope.reservationNumber = data.reservationNumber
 
 
-.controller 'ReservationCtrl', ($http, $scope, $stateParams)->
+.controller 'ReservationCtrl', ($http, $scope, $stateParams, $timeout)->
+  reservationNumber = ''
+  $scope.actionDone = false
   $scope.searchReservation = (number)->
+    reservationNumber = number
     $http.get('/reservations/'+number).success (data)->
-      $scope.location = data[0].location
-      $scope.customer = data[0].customer
-      $scope.address = data[0].address
+      $scope.location = data.location
+      $scope.customer = data.customer
+      $scope.address = data.address
+      $scope.startDate = moment(data.startDate).format('dddd, D MMMM YYYY')
+      $scope.endDate = moment(data.endDate).format('dddd, D MMMM YYYY')
 
+  $scope.updateReservation = ()->
+    $http.put('/reservations/'+reservationNumber, {
+      city: $scope.address.city,
+      street: $scope.address.street,
+      buildingNumber: $scope.address.buildingNumber,
+      flatNumber: $scope.address.flatNumber,
+      firstName: $scope.customer.firstName,
+      lastName: $scope.customer.lastName,
+      email: $scope.customer.email,
+      phone: $scope.customer.phone,
+      description: $scope.customer.description
+
+      }).success (data)->
+      $scope.showMessage()
+
+  $scope.showMessage = ->
+    $scope.actionDone = true
+    $timeout ->
+      $scope.actionDone = false
+    , 5000
