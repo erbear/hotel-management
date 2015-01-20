@@ -55,15 +55,6 @@ ActiveRecord::Schema.define(version: 20150118170245) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "adres", force: true do |t|
-    t.string   "miasto"
-    t.string   "ulica"
-    t.integer  "nr_domu"
-    t.integer  "nr_lokalu"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "checkin_malfunctions", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
