@@ -12,6 +12,5 @@
  *
  *= require bootstrap
  *= require angular-bootstrap-calendar
- *= require_tree .
  *= require_self
  */
