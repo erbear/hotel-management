@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/reservations' => 'reservations#all'
   get '/malfunctions' => 'malfunctions#all'
   post '/reservations' => 'reservations#create'
+  post '/numberreservations' => 'reservations#createWithNumber'
   get '/locations/:id' => 'reservations#showLocation'
   get '/reservations/:reservationNumber' => 'reservations#show'
   put '/reservations/:reservationNumber' => 'reservations#update'

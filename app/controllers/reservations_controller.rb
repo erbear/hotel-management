@@ -39,6 +39,24 @@ class ReservationsController < ApplicationController
 
     render :json=>reservation
   end
+  def createWithNumber
+    oldReservation = Reservation.where(params.permit(:reservationNumber)).first
+    location = params.permit(:location)["location"]
+    start_date = params.permit(:startDate)["startDate"]
+    end_date = params.permit(:endDate)["endDate"]
+    identyficator = Digest::SHA1.hexdigest([Time.now, rand].join)
+
+
+    customer = oldReservation.customers.first
+
+    reservation = customer.reservations.create(
+      location_id: location,
+      startDate: start_date,
+      endDate: end_date,
+      reservationNumber: identyficator
+      )
+    render :json=>reservation
+  end
 
   def showLocation
     render :json=> Location.where(params.permit(:id)).first.reservations
@@ -52,6 +70,8 @@ class ReservationsController < ApplicationController
         endDate: reservation.endDate,
         location: {
           name: reservation.location.name,
+          price: reservation.location.price,
+          fee: reservation.location.fee,
           type: reservation.location.type.name,
           level: reservation.location.level.name
           },

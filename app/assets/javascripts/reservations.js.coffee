@@ -40,7 +40,7 @@ angular.module('HotelApp', [
         editable: false ,
         deletable: false
         })
-
+    console.log $scope.events
   $scope.calendarDay = new Date()
 
   $scope.startDate = new Date()
@@ -66,7 +66,7 @@ angular.module('HotelApp', [
       $scope.reservationNumber = data.reservationNumber
 
   $scope.addReservationWithNumber = ()->
-    $http.post('/reservations', {
+    $http.post('/numberreservations', {
       location: $stateParams.id,
       startDate: $scope.events[0].starts_at,
       endDate: $scope.events[0].ends_at,
@@ -93,8 +93,9 @@ angular.module('HotelApp', [
         $scope.address = data.address
         $scope.startDate = moment(data.startDate).format('dddd, D MMMM YYYY')
         $scope.endDate = moment(data.endDate).format('dddd, D MMMM YYYY')
+        $scope.price = moment(data.endDate).diff(moment(data.startDate), 'days') * data.location.price
+        $scope.fee = moment(data.endDate).diff(moment(data.startDate), 'days') * data.location.fee
       else
-        console.log 'lol'
         $scope.showMessage("Nie znaleziono takiej rezerwacji")
 
   $scope.updateReservation = ()->
