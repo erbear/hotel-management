@@ -1,4 +1,5 @@
 ActiveAdmin.register Address do
+  menu :priority => 2
 
 permit_params :city, :street, :buildingNumber, :flatNumber
 

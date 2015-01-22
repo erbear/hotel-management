@@ -1,4 +1,5 @@
 ActiveAdmin.register Customer do
+  menu :priority => 1
 
   permit_params :firstName, :lastName, :address, :email, :phone, :description
 
@@ -7,7 +8,7 @@ ActiveAdmin.register Customer do
     column :firstName
     column :lastName
     # column @cust.firstName
-    column :address
+    # column :address
     column :email
     column :phone
     column :description
@@ -28,7 +29,7 @@ ActiveAdmin.register Customer do
       f.input :email
       f.input :phone
       # f.input custAll[:lastName]
-      
+
       f.inputs do
         f.has_many :address, heading: 'Customer address', allow_destroy: false, new_record: false do |a|
           a.input :city
@@ -41,6 +42,10 @@ ActiveAdmin.register Customer do
     end
 
     f.actions
+  end
+
+  action_item :view_site do
+
   end
 
 end
