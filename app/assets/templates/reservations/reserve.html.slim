@@ -37,7 +37,7 @@ input.form-control type="date" ng-model="events[0].ends_at"
       input type="radio" ng-model="isReservation" value="false" Nowy Klient
     div
       input type="radio" ng-model="isReservation" value="true" Miałem już rezerwacje
-div ng-show="isReservation=='false'"
+div ng-show="isReservation=='false' && goodDate"
   h2
     | Dane
   div
@@ -96,7 +96,7 @@ div ng-show="isReservation=='false'"
     button.btn.btn-success ng-click="addReservation()"
       | Rezerwuj
 
-div ng-if="isReservation == 'true'"
+div ng-if="isReservation == 'true' && goodDate"
   div
     label
       | Wpisz numer rezerwacji
