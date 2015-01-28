@@ -28,7 +28,7 @@ angular.module('HotelApp', [
         title: 'Zarezerwowane',
         type: 'important',
         starts_at: moment(d.startDate).toDate(),
-        ends_at: moment(d.endDate).toDate(),
+        ends_at: moment(d.endDate).add(23, 'h').add(59, 'm').toDate(),
         editable: false ,
         deletable: false
         })
@@ -45,6 +45,22 @@ angular.module('HotelApp', [
 
   $scope.startDate = new Date()
   $scope.endDate = new Date()
+  $scope.goodDate = false
+  $scope.$watch 'events', (newVal)->
+    days = moment(newVal[0].ends_at).diff(newVal[0].starts_at, 'days')
+    $scope.goodDate = false
+    if days >= 0
+      $scope.goodDate = true
+      for number in [0..days]
+        toCheck = moment(newVal[0].starts_at).add(number, 'days')
+        for day in [1..(newVal.length - 1)]
+          start = moment(newVal[day].starts_at)
+          end = moment(newVal[day].ends_at)
+          # console.log start.toDate()+ ' < ' + toCheck.toDate() + ' && ' + end.toDate() + ' > ' + toCheck.toDate()
+          # console.log toCheck.isAfter(start) && end.isAfter(toCheck)
+          if toCheck.isAfter(start) && end.isAfter(toCheck)
+            $scope.goodDate = false
+  , true
 
   $scope.addReservation = ()->
     $http.post('/reservations', {

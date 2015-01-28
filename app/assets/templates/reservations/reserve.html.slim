@@ -19,7 +19,6 @@ mwl-calendar(
     calendar-delete-event-click="eventDeleted($event)"
     calendar-auto-open="false"
 )
-
 h2
   | Kiedy?
 label
@@ -29,10 +28,15 @@ label
   | koniec
 input.form-control type="date" ng-model="events[0].ends_at"
 .well style="margin: 20px 0;"
-  div
-    input type="radio" ng-model="isReservation" value="false" Nie posiadam zadnej rezerwacji
-  div
-    input type="radio" ng-model="isReservation" value="true" Posiadam Rezerwacje
+  .alert.alert-danger ng-show="!goodDate"
+    | Wpisałeś złą datę lub jest ona zajęta!
+  div ng-show="goodDate"
+    .alert.alert-success
+      | Wtedy pokój jest wolny!
+    div
+      input type="radio" ng-model="isReservation" value="false" Nowy Klient
+    div
+      input type="radio" ng-model="isReservation" value="true" Miałem już rezerwacje
 div ng-show="isReservation=='false'"
   h2
     | Dane
