@@ -1,6 +1,6 @@
 ActiveAdmin.register Customer do
   menu :priority => 1
-
+  config.per_page = 10
   permit_params :firstName, :lastName, :address, :email, :phone, :description
 
   index do

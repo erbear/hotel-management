@@ -1,6 +1,6 @@
 ActiveAdmin.register AdminUser do
   permit_params :email, :password, :password_confirmation
-
+  config.per_page = 10
   index do
     selectable_column
     id_column

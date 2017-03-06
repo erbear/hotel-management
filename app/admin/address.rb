@@ -1,6 +1,6 @@
 ActiveAdmin.register Address do
   menu :priority => 2
-
+  config.per_page = 10
 permit_params :city, :street, :buildingNumber, :flatNumber
 
   index do
